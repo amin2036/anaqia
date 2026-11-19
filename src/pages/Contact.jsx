@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useStore } from '../context/StoreContext.jsx'
 
 export default function Contact() {
@@ -22,11 +23,12 @@ export default function Contact() {
         <div className="card contact-info">
           <h3>{t('about')}</h3>
           <p className="muted">{t('aboutText')}</p>
-          <p>📍 {settings.store_address || t('address1')}</p>
+          {settings.store_address && <p>📍 {settings.store_address}</p>}
           {settings.store_phone && <p>📞 <a href={`tel:${settings.store_phone}`}>{settings.store_phone}</a></p>}
           {settings.store_phone && <p>💬 <a href={`https://wa.me/88${settings.store_phone.replace(/\D/g, '').replace(/^88/, '')}`} target="_blank" rel="noreferrer">WhatsApp</a></p>}
           {settings.store_email && <p>✉️ <a href={`mailto:${settings.store_email}`}>{settings.store_email}</a></p>}
           <p>🕘 {t('hours')}</p>
+          <p className="muted small"><Link to="/help">{t('help')}</Link> · <Link to="/returns">{t('returnsP')}</Link></p>
         </div>
       </div>
     </div>

@@ -10,7 +10,8 @@ export default function Footer() {
         <div>
           <Logo size={40} tagline />
           <p className="muted footer-about">{t('aboutText')}</p>
-          {settings.store_phone && <p className="muted small">📞 {settings.store_phone}</p>}
+          {settings.store_phone && <p className="muted small">📞 <a href={`tel:${settings.store_phone}`}>{settings.store_phone}</a></p>}
+          {settings.store_email && <p className="muted small">✉️ <a href={`mailto:${settings.store_email}`}>{settings.store_email}</a></p>}
           <div className="socials">
             {['f', 'ig', '▶', '𝕏'].map((s) => <span key={s} className="social">{s}</span>)}
           </div>
@@ -21,9 +22,9 @@ export default function Footer() {
         </div>
         <div>
           <h4>{t('customerCare')}</h4>
-          <Link to="/contact">{t('help')}</Link>
+          <Link to="/help">{t('help')}</Link>
           <Link to="/track">{t('track')}</Link>
-          <Link to="/contact">{t('returnsP')}</Link>
+          <Link to="/returns">{t('returnsP')}</Link>
           <Link to="/contact">{t('contact')}</Link>
         </div>
         <div>
@@ -39,7 +40,7 @@ export default function Footer() {
       </div>
       <div className="container footer-bottom">
         <span>© {new Date().getFullYear()} Anaqia. {t('rights')}</span>
-        <span><Link to="/contact">{t('terms')}</Link> · <Link to="/contact">{t('privacy')}</Link></span>
+        <span><Link to="/terms">{t('terms')}</Link> · <Link to="/privacy">{t('privacy')}</Link></span>
       </div>
     </footer>
   )

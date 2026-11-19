@@ -15,6 +15,8 @@ import Wishlist from './pages/Wishlist.jsx'
 import Track from './pages/Track.jsx'
 import Contact from './pages/Contact.jsx'
 import NotFound from './pages/NotFound.jsx'
+import Policy from './pages/Policy.jsx'
+import WhatsAppButton from './components/WhatsAppButton.jsx'
 
 // The admin panel is loaded only when someone opens /admin, so shoppers never download it.
 const AdminApp = lazy(() => import('./admin/AdminApp.jsx'))
@@ -59,10 +61,15 @@ export default function App() {
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/track" element={<Track />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/help" element={<Policy page="help" />} />
+          <Route path="/returns" element={<Policy page="returns" />} />
+          <Route path="/privacy" element={<Policy page="privacy" />} />
+          <Route path="/terms" element={<Policy page="terms" />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
+      <WhatsAppButton />
       {toast && <div className="toast">✓ {toast}</div>}
     </>
   )
