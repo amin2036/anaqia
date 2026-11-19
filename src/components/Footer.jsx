@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useStore } from '../context/StoreContext.jsx'
 import Logo from './Logo.jsx'
+import SocialLinks from './SocialLinks.jsx'
 
 export default function Footer() {
   const { t, lang, categories, settings } = useStore()
@@ -12,9 +13,7 @@ export default function Footer() {
           <p className="muted footer-about">{t('aboutText')}</p>
           {settings.store_phone && <p className="muted small">📞 <a href={`tel:${settings.store_phone}`}>{settings.store_phone}</a></p>}
           {settings.store_email && <p className="muted small">✉️ <a href={`mailto:${settings.store_email}`}>{settings.store_email}</a></p>}
-          <div className="socials">
-            {['f', 'ig', '▶', '𝕏'].map((s) => <span key={s} className="social">{s}</span>)}
-          </div>
+          <SocialLinks />
         </div>
         <div>
           <h4>{t('shop')}</h4>

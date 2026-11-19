@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useStore } from '../context/StoreContext.jsx'
+import SocialLinks from '../components/SocialLinks.jsx'
 
 export default function Contact() {
   const { t, settings } = useStore()
@@ -28,6 +29,8 @@ export default function Contact() {
           {settings.store_phone && <p>💬 <a href={`https://wa.me/88${settings.store_phone.replace(/\D/g, '').replace(/^88/, '')}`} target="_blank" rel="noreferrer">WhatsApp</a></p>}
           {settings.store_email && <p>✉️ <a href={`mailto:${settings.store_email}`}>{settings.store_email}</a></p>}
           <p>🕘 {t('hours')}</p>
+          {settings.facebook_url && <p>📘 <a href={settings.facebook_url} target="_blank" rel="noreferrer">Facebook: {settings.facebook_url.replace(/^https?:\/\/(www\.)?/, '')}</a></p>}
+          <SocialLinks />
           <p className="muted small"><Link to="/help">{t('help')}</Link> · <Link to="/returns">{t('returnsP')}</Link></p>
         </div>
       </div>

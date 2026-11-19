@@ -32,6 +32,14 @@ export default function Settings() {
           <label>বিকাশ মার্চেন্ট/পার্সোনাল নম্বর<input value={f.bkash_number} onChange={set('bkash_number')} placeholder="01XXXXXXXXX" /></label>
           <label>নগদ নম্বর<input value={f.nagad_number} onChange={set('nagad_number')} placeholder="01XXXXXXXXX" /></label>
         </div>
+        <div className="adm-card adm-form">
+          <h2>🔗 সোশ্যাল মিডিয়া লিংক</h2>
+          <p className="adm-muted small">যেগুলো দেবেন শুধু সেগুলোই দোকানের নিচে (ফুটার) আর যোগাযোগ পেজে দেখাবে। পুরো লিংক দিন (https:// দিয়ে শুরু)।</p>
+          <label>Facebook<input type="url" value={f.facebook_url || ''} onChange={set('facebook_url')} placeholder="https://www.facebook.com/..." /></label>
+          <label>Instagram<input type="url" value={f.instagram_url || ''} onChange={set('instagram_url')} placeholder="https://www.instagram.com/..." /></label>
+          <label>YouTube<input type="url" value={f.youtube_url || ''} onChange={set('youtube_url')} placeholder="https://www.youtube.com/@..." /></label>
+          <label>TikTok<input type="url" value={f.tiktok_url || ''} onChange={set('tiktok_url')} placeholder="https://www.tiktok.com/@..." /></label>
+        </div>
       </div>
       {msg && <p className={msg.startsWith('✓') ? 'adm-ok' : 'adm-error'}>{msg}</p>}
       <button className="adm-btn">সেভ করুন</button>

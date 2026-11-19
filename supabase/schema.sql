@@ -70,7 +70,11 @@ create table if not exists public.settings (
   store_email text not null default '',
   store_address text not null default '',
   bkash_number text not null default '',
-  nagad_number text not null default ''
+  nagad_number text not null default '',
+  facebook_url text not null default '',
+  instagram_url text not null default '',
+  youtube_url text not null default '',
+  tiktok_url text not null default ''
 );
 insert into public.settings (id) values (1) on conflict (id) do nothing;
 

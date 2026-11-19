@@ -6,7 +6,7 @@ const db = {
   categories: categories.map((c, i) => ({ id: c.id, name_en: c.name.en, name_bn: c.name.bn, emoji: c.emoji, hue: c.hue, image_url: null, sort: i, active: true })),
   products: products.map((p, i) => ({ id: p.id, category_id: p.cat, name_en: p.name.en, name_bn: p.name.bn, description_en: 'desc', description_bn: 'বিবরণ', price: p.price, old_price: p.old, stock: p.stock, emoji: p.emoji, images: [p.image], sizes: p.sizes || [], colors: [], badge: p.badge || null, tags: p.tags || [], rating: p.rating, reviews: p.reviews, active: true, sort: i })),
   coupons: Object.entries(coupons).map(([code, c]) => ({ code, type: c.type, value: c.value, min_order: c.min, active: true, expires_at: null, created_at: new Date().toISOString() })),
-  settings: [{ id: 1, delivery_inside: 60, delivery_outside: 120, free_over: 3000, store_phone: '', store_email: '', store_address: '', bkash_number: '', nagad_number: '' }],
+  settings: [{ id: 1, delivery_inside: 60, delivery_outside: 120, free_over: 3000, store_phone: '', store_email: '', store_address: '', bkash_number: '', nagad_number: '', facebook_url: 'https://www.facebook.com/anaqia11', instagram_url: '', youtube_url: '', tiktok_url: '' }],
   orders: [], order_items: [],
 }
 window.__mockdb = db

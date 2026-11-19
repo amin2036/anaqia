@@ -23,7 +23,7 @@ export const demoCatalog = () => ({
     ...p, images: p.image ? [p.image] : [], colors: p.colors || [], sizes: p.sizes || [], tags: p.tags || [],
     desc: { en: strings.en.descText, bn: strings.bn.descText },
   })),
-  settings: { delivery_inside: 60, delivery_outside: 120, free_over: 3000, store_phone: '', store_email: '', store_address: '', bkash_number: '', nagad_number: '' },
+  settings: { delivery_inside: 60, delivery_outside: 120, free_over: 3000, store_phone: '', store_email: '', store_address: '', bkash_number: '', nagad_number: '', facebook_url: '', instagram_url: '', youtube_url: '', tiktok_url: '' },
 })
 
 export const slugify = (s) => s.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60)

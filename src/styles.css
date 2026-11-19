@@ -469,3 +469,11 @@ html[lang='bn'] .hero h1 { line-height: 1.2; letter-spacing: 0; }
 .wa-float { position: fixed; right: 18px; bottom: 18px; width: 56px; height: 56px; border-radius: 50%; background: #25D366; display: grid; place-items: center; box-shadow: 0 10px 26px rgba(37, 211, 102, .45); z-index: 90; transition: transform .2s; }
 .wa-float:hover { transform: scale(1.08); }
 @media (max-width: 600px) { .policy-card { padding: 18px; } .wa-float { width: 50px; height: 50px; right: 14px; bottom: 14px; } }
+a.social { color: var(--ink); transition: background .2s, transform .2s; }
+a.social:hover { background: #1877F2; color: #fff; transform: translateY(-2px); }
+.contact-info .socials { display: flex; gap: 10px; }
+.contact-info a.social { border: 1px solid var(--border); }
+.footer-grid p a { display: inline; padding: 0; }
+.footer-grid a.social { display: grid; place-items: center; padding: 0; color: var(--ink); }
+.footer-grid a.social:hover { color: #fff; }
+.footer .socials { margin-top: 10px; }
