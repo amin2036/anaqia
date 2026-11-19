@@ -120,7 +120,7 @@ language sql stable security definer set search_path = public as $$
 $$;
 
 create or replace function public.touch_updated_at() returns trigger
-language plpgsql as $$ begin new.updated_at := now(); return new; end $$;
+language plpgsql set search_path = public as $$ begin new.updated_at := now(); return new; end $$;
 
 drop trigger if exists products_touch on public.products;
 create trigger products_touch before update on public.products
@@ -275,6 +275,9 @@ grant execute on function public.get_coupon(text) to anon, authenticated;
 grant execute on function public.place_order(jsonb) to anon, authenticated;
 grant execute on function public.track_order(text, text) to anon, authenticated;
 grant execute on function public.admin_stats() to authenticated;
+revoke execute on function public.admin_stats() from anon;
+revoke execute on function public.restock_on_cancel() from public, anon, authenticated;
+revoke execute on function public.touch_updated_at() from public, anon, authenticated;
 grant execute on function public.is_admin() to anon, authenticated;
 
 -- ---------- Row Level Security ----------------------------------------
