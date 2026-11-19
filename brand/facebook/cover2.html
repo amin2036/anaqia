@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Hind+Siliguri:wght@600;700&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{width:1640px;height:924px;overflow:hidden;font-family:Poppins,'Hind Siliguri',sans-serif;color:#fff;position:relative;background:radial-gradient(900px 600px at 15% 10%,rgba(255,255,255,.18),transparent 60%),radial-gradient(800px 600px at 90% 90%,rgba(253,224,71,.28),transparent 60%),linear-gradient(135deg,#5B21B6 0%,#9333EA 30%,#DB2777 65%,#F97316 100%)}
+.dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.14) 2px,transparent 2px);background-size:36px 36px;opacity:.7}
+.blob{position:absolute;border-radius:50%;filter:blur(2px)}
+/* LEFT text block: x 150-760, y 175-470 (visible on desktop + mobile, above the profile picture) */
+.text{position:absolute;left:150px;top:178px;width:700px}
+.brand{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+.brand svg{width:92px;height:92px;filter:drop-shadow(0 12px 22px rgba(76,5,25,.4))}
+.brand b{font-size:70px;font-weight:700;letter-spacing:-1.5px;line-height:1}
+.brand small{display:block;font-size:16px;letter-spacing:6px;margin-top:8px;font-weight:600;opacity:.92}
+h1{font-size:54px;line-height:1.12;font-weight:800;text-shadow:0 6px 24px rgba(76,5,25,.3)}
+h1 span{color:#FDE047}
+.bn{font-family:'Hind Siliguri',sans-serif;font-size:31px;font-weight:700;margin-top:12px;opacity:.95}
+/* Bottom-left contact block: x 150-440, y 500-740 (left of the mobile profile picture) */
+.contact{position:absolute;left:150px;top:505px;display:flex;flex-direction:column;gap:14px}
+.pill{display:inline-flex;align-items:center;gap:10px;font-size:25px;font-weight:700;padding:13px 24px;border-radius:16px;width:fit-content}
+.web{background:#fff;color:#BE185D;box-shadow:0 12px 28px rgba(76,5,25,.3)}
+.wa{background:#25D366;box-shadow:0 12px 28px rgba(6,95,70,.3)}
+.cod{font-family:'Hind Siliguri',sans-serif;background:rgba(255,255,255,.16);border:2px solid rgba(255,255,255,.5);font-size:23px}
+/* RIGHT visual: x 930-1500 */
+.photo{position:absolute;left:960px;top:150px;width:520px;height:600px;border-radius:36px;background:url(hero.jpg) 55% center/cover;border:8px solid rgba(255,255,255,.9);box-shadow:0 30px 60px rgba(76,5,25,.45);transform:rotate(3deg)}
+.card{position:absolute;width:170px;height:170px;border-radius:28px;background-size:cover;background-position:center;border:6px solid #fff;box-shadow:0 18px 40px rgba(76,5,25,.4)}
+.badge{position:absolute;left:1350px;top:165px;width:150px;height:150px;border-radius:50%;background:#FDE047;color:#9D174D;display:grid;place-items:center;text-align:center;font-weight:800;font-size:30px;line-height:1.05;box-shadow:0 16px 34px rgba(76,5,25,.35);transform:rotate(-10deg)}
+.badge small{display:block;font-size:17px;font-weight:700}
+</style></head><body><div class="dots"></div>
+<div class="text">
+ <div class="brand"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ga" gradientUnits="userSpaceOnUse" x1="20" y1="30" x2="44" y2="54"><stop offset="0" stop-color="#7C3AED"/><stop offset="1" stop-color="#F43F5E"/></linearGradient></defs><path d="M23 22v-5a9 9 0 0 1 18 0v5" fill="none" stroke="#fff" stroke-width="4.2" stroke-linecap="round"/><rect x="9" y="21" width="46" height="38" rx="13" fill="#fff"/><path d="M23.5 51 32 31.5 40.5 51" fill="none" stroke="url(#ga)" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M27.2 44.2h9.6" stroke="url(#ga)" stroke-width="4.2" stroke-linecap="round"/><path d="M50 6l1.6 4.4L56 12l-4.4 1.6L50 18l-1.6-4.4L44 12l4.4-1.6z" fill="#FDE047"/></svg><div><b>anaqia</b><small>EVERYTHING YOU LOVE</small></div></div>
+ <h1>Your World Of Shopping<br><span>Starts Here.</span></h1>
+ <p class="bn">আপনার পছন্দের সবকিছু, এক জায়গায়</p>
+</div>
+<div class="contact">
+ <div class="pill web">🌐 anaqia.com</div>
+ <div class="pill wa">💬 01799276886</div>
+</div>
+<div class="photo"></div>
+<div class="card" style="left:880px;top:560px;background-image:url(p-street-sneakers.jpg);transform:rotate(-8deg)"></div>
+<div class="card" style="left:1395px;top:600px;background-image:url(p-glow-serum.jpg);transform:rotate(7deg)"></div>
+<div class="card" style="left:860px;top:150px;width:140px;height:140px;background-image:url(p-anc-headphones.jpg);transform:rotate(-6deg)"></div>
+<div class="badge"><div>৫০%<small>পর্যন্ত ছাড়</small></div></div>
+</body></html>
