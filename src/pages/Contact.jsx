@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useStore } from '../context/StoreContext.jsx'
 
 export default function Contact() {
-  const { t } = useStore()
+  const { t, settings } = useStore()
   const [sent, setSent] = useState(false)
   return (
     <div className="container page">
@@ -22,9 +22,10 @@ export default function Contact() {
         <div className="card contact-info">
           <h3>{t('about')}</h3>
           <p className="muted">{t('aboutText')}</p>
-          <p>📍 {t('address1')}</p>
-          <p>📞 16XXX · +880 1700-000000</p>
-          <p>✉️ support@anaqia.com</p>
+          <p>📍 {settings.store_address || t('address1')}</p>
+          {settings.store_phone && <p>📞 <a href={`tel:${settings.store_phone}`}>{settings.store_phone}</a></p>}
+          {settings.store_phone && <p>💬 <a href={`https://wa.me/88${settings.store_phone.replace(/\D/g, '').replace(/^88/, '')}`} target="_blank" rel="noreferrer">WhatsApp</a></p>}
+          {settings.store_email && <p>✉️ <a href={`mailto:${settings.store_email}`}>{settings.store_email}</a></p>}
           <p>🕘 {t('hours')}</p>
         </div>
       </div>

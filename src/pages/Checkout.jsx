@@ -72,7 +72,7 @@ export default function Checkout() {
             </div>
             {(method === 'bkash' || method === 'nagad') && (
               <div className="pay-extra">
-                <p className="muted small">{t('mobileWallet')} <b>{(method === 'bkash' ? settings.bkash_number : settings.nagad_number) || '01700-000000'}</b></p>
+                <p className="muted small">{t('mobileWallet')} <b>{(method === 'bkash' ? settings.bkash_number : settings.nagad_number) || settings.store_phone}</b></p>
                 <div className="form-grid">
                   <label>{t('walletNumber')} *<input value={f.wallet} onChange={set('wallet')} placeholder="01XXXXXXXXX" /></label>
                   <label>{t('trxId')} *<input value={f.trx} onChange={set('trx')} placeholder="8N7A6D5..." /></label>
