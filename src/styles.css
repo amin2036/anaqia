@@ -442,3 +442,13 @@ html[lang='bn'] .hero h1 { line-height: 1.2; letter-spacing: 0; }
 .sale-photo { object-position: 78% center; }
 .sale-banner:has(.sale-photo)::after { content: ''; position: absolute; inset: 0; z-index: 0; background: linear-gradient(90deg, rgba(28, 8, 62, .92), rgba(28, 8, 62, .6) 50%, transparent 85%); }
 .sale-banner:has(.sale-photo) h2, .sale-banner:has(.sale-photo) p { max-width: 58%; text-shadow: 0 2px 12px rgba(0, 0, 0, .4); }
+
+/* Product gallery */
+.pd-gallery { display: flex; flex-direction: column; gap: 12px; }
+.thumbs { display: flex; gap: 10px; flex-wrap: wrap; }
+.thumb { width: 72px; height: 72px; border-radius: 14px; overflow: hidden; border: 2px solid var(--border); background: var(--surface); padding: 0; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
+.thumb.on { border-color: var(--coral-solid); }
+.pre { white-space: pre-line; }
+.btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.track-form.col { flex-direction: column; }

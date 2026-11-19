@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
@@ -16,6 +16,9 @@ import Track from './pages/Track.jsx'
 import Contact from './pages/Contact.jsx'
 import NotFound from './pages/NotFound.jsx'
 
+// The admin panel is loaded only when someone opens /admin, so shoppers never download it.
+const AdminApp = lazy(() => import('./admin/AdminApp.jsx'))
+
 function ScrollTop() {
   const { pathname } = useLocation()
   useEffect(() => { window.scrollTo(0, 0) }, [pathname])
@@ -23,7 +26,22 @@ function ScrollTop() {
 }
 
 export default function App() {
-  const { toast } = useStore()
+  const { toast, reloadCatalog } = useStore()
+  const { pathname } = useLocation()
+  // Coming back from the admin panel: fetch the catalogue again so edits show up right away.
+  const wasAdmin = useRef(false)
+  useEffect(() => {
+    const isAdmin = pathname.startsWith('/admin')
+    if (wasAdmin.current && !isAdmin) reloadCatalog()
+    wasAdmin.current = isAdmin
+  }, [pathname, reloadCatalog])
+  if (pathname.startsWith('/admin')) {
+    return (
+      <Suspense fallback={<div style={{ padding: 40, textAlign: 'center' }}>লোড হচ্ছে...</div>}>
+        <Routes><Route path="/admin/*" element={<AdminApp />} /></Routes>
+      </Suspense>
+    )
+  }
   return (
     <>
       <ScrollTop />

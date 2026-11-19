@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useStore } from '../context/StoreContext.jsx'
-import { categories, products } from '../data/products.js'
 import ProductCard from '../components/ProductCard.jsx'
 import ProductVisual from '../components/ProductVisual.jsx'
 import Countdown from '../components/Countdown.jsx'
@@ -9,10 +8,9 @@ import Stars from '../components/Stars.jsx'
 import { LogoIcon } from '../components/Logo.jsx'
 import SmartImg from '../components/SmartImg.jsx'
 
-const byTag = (tag) => products.filter((p) => p.tags?.includes(tag))
-
 export default function Home() {
-  const { t, lang, fmt, num, pname } = useStore()
+  const { t, lang, fmt, num, pname, categories, products } = useStore()
+  const byTag = (tag) => products.filter((p) => p.tags?.includes(tag))
   const [email, setEmail] = useState('')
   const [done, setDone] = useState(false)
   const flash = byTag('flash').slice(0, 4)
@@ -26,11 +24,11 @@ export default function Home() {
     { cat: 'fashion', title: t('streetTitle'), sub: t('streetSub'), emoji: '🧥👟', from: '#8B5CF6' },
   ]
   const floats = [
-    { e: '👗', l: categories[0].name[lang], x: '6%', y: '14%' },
-    { e: '🎧', l: categories[1].name[lang], x: '70%', y: '6%' },
-    { e: '💄', l: categories[2].name[lang], x: '78%', y: '44%' },
-    { e: '🛋️', l: categories[3].name[lang], x: '4%', y: '52%' },
-    { e: '👟', l: categories[4].name[lang], x: '40%', y: '0%' },
+    { e: '👗', l: categories[0]?.name[lang], x: '6%', y: '14%' },
+    { e: '🎧', l: categories[1]?.name[lang], x: '70%', y: '6%' },
+    { e: '💄', l: categories[2]?.name[lang], x: '78%', y: '44%' },
+    { e: '🛋️', l: categories[3]?.name[lang], x: '4%', y: '52%' },
+    { e: '👟', l: categories[4]?.name[lang], x: '40%', y: '0%' },
   ]
   const testimonials = [
     { n: 'Jannatul F.', e: '🎧', text: { en: 'Amazing quality and super fast delivery. Anaqia is now my go-to shopping site!', bn: 'দারুণ মান আর খুব দ্রুত ডেলিভারি। Anaqia এখন আমার প্রিয় শপিং সাইট!' } },
@@ -79,7 +77,7 @@ export default function Home() {
         <div className="cat-strip card">
           {categories.map((c) => (
             <Link key={c.id} to={`/shop?cat=${c.id}`} className="cat-item" style={{ '--hue': c.hue }}>
-              <span className="cat-icon"><SmartImg src={`images/categories/${c.id}.jpg`} fallback={c.emoji} /></span>
+              <span className="cat-icon"><SmartImg src={c.image} fallback={c.emoji} /></span>
               <span>{c.name[lang]}</span>
             </Link>
           ))}

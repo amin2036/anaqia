@@ -1,9 +1,11 @@
-import { categoryOf } from '../data/products.js'
+import { useStore } from '../context/StoreContext.jsx'
 import SmartImg from './SmartImg.jsx'
 
-// Shows the product photo when the file exists, otherwise a soft pastel icon card.
-export default function ProductVisual({ product, size = 'md' }) {
+// Shows the product photo (first image) when available, otherwise a soft pastel icon card.
+export default function ProductVisual({ product, size = 'md', image }) {
+  const { categoryOf } = useStore()
   const hue = categoryOf(product.cat)?.hue || '#8B5CF6'
+  const src = image || product.images?.[0]
   const icon = (
     <>
       <span className="pv-glow" />
@@ -13,7 +15,7 @@ export default function ProductVisual({ product, size = 'md' }) {
   )
   return (
     <div className={`pv pv-${size}`} style={{ '--hue': hue }}>
-      <SmartImg src={product.image} alt={product.name.en} className="pv-img" fallback={icon} />
+      <SmartImg key={src} src={src} alt={product.name.en} className="pv-img" fallback={icon} />
     </div>
   )
 }

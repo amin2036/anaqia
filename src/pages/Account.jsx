@@ -1,10 +1,12 @@
+import { useEffect, useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { useStore } from '../context/StoreContext.jsx'
 
 export default function Account() {
-  const { t, fmt, num, user, logout, orders, wishlist, lang } = useStore()
+  const { t, fmt, num, user, logout, wishlist, lang, fetchMyOrders } = useStore()
+  const [orders, setOrders] = useState(null)
+  useEffect(() => { if (user) fetchMyOrders().then(setOrders) }, [user?.email]) // eslint-disable-line react-hooks/exhaustive-deps
   if (!user) return <Navigate to="/login" replace />
-  const mine = orders.filter((o) => o.userEmail === user.email)
   return (
     <div className="container page">
       <div className="card account-head">
@@ -17,17 +19,18 @@ export default function Account() {
       </div>
       <section className="section">
         <h2>{t('myOrders')}</h2>
-        {mine.length === 0 ? <p className="empty">{t('noOrders')}</p> : (
+        {orders === null ? <p className="empty">{t('loading')}</p> : orders.length === 0 ? <p className="empty">{t('noOrders')}</p> : (
           <div className="card table-wrap">
             <table className="orders">
-              <thead><tr><th>ID</th><th>{t('date')}</th><th>{t('items')}</th><th>{t('total')}</th><th></th></tr></thead>
-              <tbody>{mine.map((o) => (
-                <tr key={o.id}>
-                  <td><b>{o.id}</b></td>
-                  <td>{new Date(o.createdAt).toLocaleDateString(lang === 'bn' ? 'bn-BD' : 'en-GB')}</td>
-                  <td>{num(o.items.reduce((s, i) => s + i.qty, 0))}</td>
+              <thead><tr><th>ID</th><th>{t('date')}</th><th>{t('items')}</th><th>{t('total')}</th><th>{t('status')}</th><th></th></tr></thead>
+              <tbody>{orders.map((o) => (
+                <tr key={o.code}>
+                  <td><b>{o.code}</b></td>
+                  <td>{new Date(o.created_at).toLocaleDateString(lang === 'bn' ? 'bn-BD' : 'en-GB')}</td>
+                  <td>{num(o.qty)}</td>
                   <td>{fmt(o.total)}</td>
-                  <td><Link to={`/track?id=${o.id}`}>{t('trackBtn')} →</Link></td>
+                  <td>{t('status_' + o.status)}</td>
+                  <td><Link to={`/track?id=${o.code}`}>{t('trackBtn')} →</Link></td>
                 </tr>
               ))}</tbody>
             </table>

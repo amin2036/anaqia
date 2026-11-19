@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom'
 import { useStore } from '../context/StoreContext.jsx'
-import { findProduct } from '../data/products.js'
 import ProductCard from '../components/ProductCard.jsx'
 
 export default function Wishlist() {
-  const { t, wishlist } = useStore()
+  const { t, wishlist, findProduct } = useStore()
   const items = wishlist.map(findProduct).filter(Boolean)
   return (
     <div className="container page">

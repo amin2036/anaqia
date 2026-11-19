@@ -8,13 +8,23 @@ export default function Login() {
   const [mode, setMode] = useState('login')
   const [f, setF] = useState({ name: '', email: '', password: '' })
   const [err, setErr] = useState('')
+  const [info, setInfo] = useState('')
+  const [busy, setBusy] = useState(false)
   const nav = useNavigate()
   if (user) return <Navigate to="/account" replace />
   const set = (k) => (e) => setF({ ...f, [k]: e.target.value })
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault()
-    if (mode === 'login') { if (login(f)) nav('/account'); else setErr(t('wrongLogin')) }
-    else { if (register(f)) nav('/account'); else setErr(t('exists')) }
+    setBusy(true); setErr(''); setInfo('')
+    if (mode === 'login') {
+      if (await login(f)) nav('/account'); else setErr(t('wrongLogin'))
+    } else {
+      const r = await register(f)
+      if (r === 'ok') nav('/account')
+      else if (r === 'confirm') setInfo(t('checkEmail'))
+      else setErr(t(r === 'exists' ? 'exists' : 'errGeneric'))
+    }
+    setBusy(false)
   }
   return (
     <div className="container page narrow">
@@ -23,12 +33,13 @@ export default function Login() {
         <h1>{mode === 'login' ? t('loginTitle') : t('registerTitle')}</h1>
         {mode === 'register' && <label>{t('name')}<input required value={f.name} onChange={set('name')} /></label>}
         <label>Email<input type="email" required value={f.email} onChange={set('email')} /></label>
-        <label>{t('password')}<input type="password" required minLength="4" value={f.password} onChange={set('password')} /></label>
+        <label>{t('password')}<input type="password" required minLength="6" value={f.password} onChange={set('password')} /></label>
         {err && <p className="error small">{err}</p>}
-        <button className="btn btn-block">{mode === 'login' ? t('login') : t('register')}</button>
+        {info && <p className="success small">{info}</p>}
+        <button className="btn btn-block" disabled={busy}>{busy ? t('loading') : mode === 'login' ? t('login') : t('register')}</button>
         <p className="muted small">
           {mode === 'login' ? t('noAccount') : t('haveAccount')}{' '}
-          <button type="button" className="link" onClick={() => { setMode(mode === 'login' ? 'register' : 'login'); setErr('') }}>
+          <button type="button" className="link" onClick={() => { setMode(mode === 'login' ? 'register' : 'login'); setErr(''); setInfo('') }}>
             {mode === 'login' ? t('register') : t('login')}
           </button>
         </p>

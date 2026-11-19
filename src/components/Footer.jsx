@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom'
 import { useStore } from '../context/StoreContext.jsx'
-import { categories } from '../data/products.js'
 import Logo from './Logo.jsx'
 
 export default function Footer() {
-  const { t, lang } = useStore()
+  const { t, lang, categories, settings } = useStore()
   return (
     <footer className="footer">
       <div className="container footer-grid">
         <div>
           <Logo size={40} tagline />
           <p className="muted footer-about">{t('aboutText')}</p>
+          {settings.store_phone && <p className="muted small">📞 {settings.store_phone}</p>}
           <div className="socials">
             {['f', 'ig', '▶', '𝕏'].map((s) => <span key={s} className="social">{s}</span>)}
           </div>

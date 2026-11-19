@@ -11,7 +11,7 @@ export default function ProductCard({ product }) {
     <div className="card product-card">
       <Link to={`/product/${product.id}`} className="pc-media">
         <ProductVisual product={product} />
-        <span className="badge-off">-{num(discount(product))}%</span>
+        {product.old > product.price && <span className="badge-off">-{num(discount(product))}%</span>}
         {product.badge && <span className={`badge-tag ${product.badge}`}>{product.badge === 'new' ? 'NEW' : 'HOT'}</span>}
       </Link>
       <button
@@ -23,10 +23,10 @@ export default function ProductCard({ product }) {
       <Stars rating={product.rating} reviews={product.reviews} />
       <div className="price-row">
         <b>{fmt(product.price)}</b>
-        <s>{fmt(product.old)}</s>
+        {product.old > product.price && <s>{fmt(product.old)}</s>}
       </div>
-      <button className="btn btn-sm btn-block" onClick={() => addToCart(product.id, 1, product.sizes?.[0] || null)}>
-        🛒 {t('addToCart')}
+      <button className="btn btn-sm btn-block" disabled={product.stock <= 0} onClick={() => addToCart(product.id, 1, product.sizes?.[0] || null, product.colors?.[0] || null)}>
+        {product.stock <= 0 ? t('outOfStock') : <>🛒 {t('addToCart')}</>}
       </button>
     </div>
   )
