@@ -425,3 +425,17 @@ html[lang='bn'] .hero h1 { line-height: 1.2; letter-spacing: 0; }
   .wish-btn { top: 14px; right: 14px; }
   .price-row b { font-size: 16px; }
 }
+
+/* Real photos (used automatically when files exist in public/images) */
+.pv-img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s; }
+.product-card:hover .pv-img { transform: scale(1.05); }
+.pv-sm .pv-img { border-radius: 14px; }
+.stage-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.stage-photo ~ .stage-glow, .stage-photo ~ .stage-ring, .stage-photo ~ .stage-logo, .stage-photo ~ .float-card { display: none; }
+.cat-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.col-photo { position: absolute; right: 0; bottom: 0; width: 62%; height: 100%; object-fit: cover; object-position: center; -webkit-mask-image: linear-gradient(to right, transparent, #000 35%); mask-image: linear-gradient(to right, transparent, #000 35%); }
+.collection > div, .collection .col-arrow { position: relative; z-index: 1; }
+.sale-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.sale-photo ~ .sale-ring { display: none; }
+.sale-banner > h2, .sale-banner > p, .sale-banner > .btn { position: relative; z-index: 1; }
+.sale-photo ~ .sale-emoji { display: none; }

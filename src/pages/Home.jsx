@@ -7,6 +7,7 @@ import ProductVisual from '../components/ProductVisual.jsx'
 import Countdown from '../components/Countdown.jsx'
 import Stars from '../components/Stars.jsx'
 import { LogoIcon } from '../components/Logo.jsx'
+import SmartImg from '../components/SmartImg.jsx'
 
 const byTag = (tag) => products.filter((p) => p.tags?.includes(tag))
 
@@ -60,6 +61,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-stage" aria-hidden="true">
+            <SmartImg src="images/site/hero.jpg" className="stage-photo" />
             <div className="stage-glow" />
             <div className="stage-ring r1" /><div className="stage-ring r2" />
             <div className="stage-logo"><LogoIcon size={150} /></div>
@@ -77,7 +79,7 @@ export default function Home() {
         <div className="cat-strip card">
           {categories.map((c) => (
             <Link key={c.id} to={`/shop?cat=${c.id}`} className="cat-item" style={{ '--hue': c.hue }}>
-              <span className="cat-icon">{c.emoji}</span>
+              <span className="cat-icon"><SmartImg src={`images/categories/${c.id}.jpg`} fallback={c.emoji} /></span>
               <span>{c.name[lang]}</span>
             </Link>
           ))}
@@ -105,7 +107,7 @@ export default function Home() {
           {collections.map((c) => (
             <Link key={c.cat} to={`/shop?cat=${c.cat}`} className="collection" style={{ '--hue': c.from }}>
               <div><h3>{c.title}</h3><p>{c.sub}</p></div>
-              <span className="col-emoji">{c.emoji}</span>
+              <SmartImg src={`images/site/collection-${c.cat}.jpg`} className="col-photo" fallback={<span className="col-emoji">{c.emoji}</span>} />
               <span className="col-arrow">›</span>
             </Link>
           ))}
@@ -132,6 +134,7 @@ export default function Home() {
           ))}
         </div>
         <div className="sale-banner">
+          <SmartImg src="images/site/sale-banner.jpg" className="sale-photo" />
           <div className="sale-ring" />
           <h2>{t('saleTitle')}</h2>
           <p>{t('saleText')}</p>
